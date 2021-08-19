@@ -1,0 +1,28 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateHistoriesTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('histories', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('entity');
+            $table->string('action');
+            $table->json('data');
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('histories');
+    }
+}
