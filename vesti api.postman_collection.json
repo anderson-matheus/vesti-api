@@ -1,0 +1,363 @@
+{
+	"info": {
+		"_postman_id": "f873d854-759d-4102-a5a3-9634b6754056",
+		"name": "vesti api",
+		"description": "1 - Configure api_url variable;\n2 - Create user with api.users.store;\n3 - Login with api.users.login;\n4 - After login, configure token variable;",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "api.users.store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"usuário teste\",\n    \"email\": \"teste@gmail.com.br\",\n    \"password\": \"12345678\"\n}"
+						},
+						"url": {
+							"raw": "{{api_url}}/users/store",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"users",
+								"store"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "api.products.store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "teste de produto",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "10.12",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "descrição do produto",
+									"type": "text"
+								},
+								{
+									"key": "size",
+									"value": "12.5",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "images[0]",
+									"type": "file",
+									"src": "/home/mercedobairro/Pictures/14.jpg"
+								},
+								{
+									"key": "images[1]",
+									"type": "file",
+									"src": "/home/mercedobairro/Pictures/Screenshot from 2021-05-05 12-17-39.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_url}}/products/store",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"products",
+								"store"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "1 - Create category before create product",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "authorization",
+			"item": [
+				{
+					"name": "api.authorization.login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"teste@gmail.com.br\",\n    \"password\": \"12345678\"\n}"
+						},
+						"url": {
+							"raw": "{{api_url}}/authorization/login",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"authorization",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api.authorization.logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/authorization/logout",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"authorization",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "categories",
+			"item": [
+				{
+					"name": "api.categories.store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"teste\"\n}"
+						},
+						"url": {
+							"raw": "{{api_url}}/categories/store",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"categories",
+								"store"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "histories",
+			"item": [
+				{
+					"name": "api.histories.fetch",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/histories/fetch?page=1",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"histories",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_url",
+			"value": "http://localhost:8000/api"
+		},
+		{
+			"key": "token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZWFmYTgxMTdhYjdhNzI0ZGUyMDg1OWQyZTk3OTRhNzY1YjRmNTQxMTUwNDE3YmMxYTI2NGJkNTMzNDJhNTA0MTNhYWUzYjE2ZTk0ZWNlYmMiLCJpYXQiOjE2Mjk0MDAyOTYuMTAyMTUzLCJuYmYiOjE2Mjk0MDAyOTYuMTAyMTU4LCJleHAiOjE2NjA5MzYyOTYuMDk3Nzc5LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.SDiKlqxNAxaF0J7nBAKrhZxXKhc2insGgPuORPnjWTfqjMh04pRvzizoVx1Dc9YyL1v0_z5xqXJnkKPxoThf9i17oUWwbuwHL54kFw0012i_pVIq_reP6hbj8AWkZkiZnfxC573NohnyBNRTJdCR59jiEKQ6vW7GbfDHhAYxwKqI_eMKTDI2bGDR8bBDD513OZ4Argmj11ZLrTOzt-pYJQL1BKE2vRjTuNFWVULs30dGK0cI5FSiOxfHlH9Oc6k45jOmGpLqDgipaIxCE_CIrh62ZQXuikWPomb4qIDrqRb-Zkg9MLjISttemXQsxEnEH5aUKlOfXiLGDRYPpgnmUuHBhYy3WugcETbblOLamUP0h1g2LR5J2RIYpPsfuf5WCMDLZ5TRmhBi9kz91BuwsSLP4ncXbjHNhnaDun4QUPb1d_CCYZJ00x5qPG6bzmChRNpDL-bzwHuuXYWYABzOPtP83VVJk5Ibtn_mkJMYuJLwanMhctU_7ny8TCaFjEGj0gZHsUKhFfviNiEBrXUuQiMBkkXbpBgyYbq88Upw_McjpbY9a5gxlY1fezFae099_qKY1tuns5X6ku4HxNCi57AStxZQ4qW4wPveX5s8cjwNPGro4pyK8DRA-7ecg8LyOh6v6KH0w_wKsMbbhdM2I1vlU9YKKMMAAPw8Qs187aA"
+		}
+	]
+}
