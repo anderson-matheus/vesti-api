@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Api\Categories\StoreCategoryRequest;
 use App\Repositories\CategoryRepository;
 use Exception;
-use App\Http\Requests\Categories\StoreCategoryRequest;
 
 class ApiCategoryController extends Controller
 {
