@@ -43,7 +43,7 @@ php artisan optimize
 php artisan storage:link
 composer dump-autoload
 php artisan test
-php artisan serve --host:0.0.0.0
+php artisan serve --host=0.0.0.0
 ```
 
 #### Application url
