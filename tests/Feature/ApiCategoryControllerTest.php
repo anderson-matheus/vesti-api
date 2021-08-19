@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
+use App\Models\User;
 use Faker\Factory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
+use Tests\TestCase;
 
-class ApiCategoryController extends TestCase
+class ApiCategoryControllerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -18,7 +18,7 @@ class ApiCategoryController extends TestCase
         $user = User::factory()->create();
         $data = [
             'email' => $user->email,
-            'password' => 'password'
+            'password' => 'password123',
         ];
 
         $responsetoken = $this->json(
@@ -41,7 +41,7 @@ class ApiCategoryController extends TestCase
             [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
-                'Authorization' => "Bearer {$token}"
+                'Authorization' => "Bearer {$token}",
             ]
         );
         $response->assertStatus(200);

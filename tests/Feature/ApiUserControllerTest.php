@@ -2,11 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use Faker\Factory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
+use Tests\TestCase;
 
 class ApiUserControllerTest extends TestCase
 {
@@ -19,7 +18,7 @@ class ApiUserControllerTest extends TestCase
         $data = [
             'name' => $faker->name,
             'email' => $faker->email,
-            'password' => $faker->password,
+            'password' => 'password123',
         ];
 
         $response = $this->json(

@@ -2,11 +2,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
-use Illuminate\Support\Facades\Artisan;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
+use Tests\TestCase;
 
 class ApiAuthorizationControllerTest extends TestCase
 {
@@ -18,7 +17,7 @@ class ApiAuthorizationControllerTest extends TestCase
         $user = User::factory()->create();
         $data = [
             'email' => $user->email,
-            'password' => 'password'
+            'password' => 'password123',
         ];
 
         $response = $this->json(
@@ -36,7 +35,7 @@ class ApiAuthorizationControllerTest extends TestCase
         $user = User::factory()->create();
         $data = [
             'email' => $user->email,
-            'password' => 'password'
+            'password' => 'password123',
         ];
 
         $responsetoken = $this->json(
@@ -54,7 +53,7 @@ class ApiAuthorizationControllerTest extends TestCase
             [
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
-                'Authorization' => "Bearer {$token}"
+                'Authorization' => "Bearer {$token}",
             ]
         );
         $response->assertStatus(200);
