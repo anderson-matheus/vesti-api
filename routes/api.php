@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ApiAuthorizationController;
 use App\Http\Controllers\Api\ApiCategoryController;
+use App\Http\Controllers\Api\ApiHistoryController;
 use App\Http\Controllers\Api\ApiProductController;
 use App\Http\Controllers\Api\ApiUserController;
 use Illuminate\Support\Facades\Route;
@@ -36,5 +37,9 @@ Route::middleware('auth:api')->group(function () {
 
     Route::group(['prefix' => 'products'], function () {
         Route::post('store', [ApiProductController::class, 'store'])->name('api.products.store');
+    });
+
+    Route::group(['prefix' => 'histories'], function () {
+        Route::get('fetch', [ApiHistoryController::class, 'fetch'])->name('api.histories.fetch');
     });
 });
