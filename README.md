@@ -40,14 +40,10 @@ php artisan key:generate
 php artisan migrate:fresh --seed
 php artisan passport:install --force
 php artisan optimize
+php artisan storage:link
 composer dump-autoload
-php artisan serve --host:0.0.0.0
-```
-
-#### Run tests
-```sh
-docker exec -it vesti_app bash
 php artisan test
+php artisan serve --host:0.0.0.0
 ```
 
 #### Application url
